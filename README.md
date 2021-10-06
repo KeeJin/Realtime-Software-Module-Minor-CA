@@ -1,3 +1,9 @@
+# Project Structure
+<img src="./graphics/file_structure.png">
+
+# Program Logical flow
+<img src="./graphics/program_logic.png">
+
 # How to compile and run the code
 
 ## Tested on ubuntu 18.04, gcc 7.5.0:
