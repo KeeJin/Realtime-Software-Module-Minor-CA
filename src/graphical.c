@@ -188,11 +188,11 @@ void DrawTable(char* type_D1, char* type_D2, char* type_D3, char* type_C1, char*
 
 	for (int i = 0; i < num_values; i++)
 	{
-		printf("|%13.2f |", value_D1[i]);
+		printf("|%13.4f |", value_D1[i]);
 		if (type_D2[0]) printf("%13.2f |", value_D2[i]);
 		if (type_D3[0]) printf("%13.2f |", value_D3[i]);
-		printf("%13.2f |", value_C1[i]);
-		printf("%13.2f |\n", value_C2[i]);
+		printf("%13.4f |", value_C1[i]);
+		printf("%13.4f |\n", value_C2[i]);
 
 		Divider(type_D2, type_D3, 0);
 	}
@@ -201,16 +201,16 @@ void DrawTable(char* type_D1, char* type_D2, char* type_D3, char* type_C1, char*
 	printf("|     MEAN     |");
 	if (type_D2[0]) printf("     MEAN     |");
 	if (type_D3[0]) printf("     MEAN     |");
-	printf("%13.2f |", mean_C1);
-	printf("%13.2f |\n", mean_C2);
+	printf("%13.4f |", mean_C1);
+	printf("%13.4f |\n", mean_C2);
 
 	//SD
 	Divider(type_D2, type_D3, 0);
 	printf("|      SD      |");
 	if (type_D2[0]) printf("      SD      |");
 	if (type_D3[0]) printf("      SD      |");
-	printf("%13.2f |", SD_C1);
-	printf("%13.2f |\n", SD_C2);
+	printf("%13.4f |", SD_C1);
+	printf("%13.4f |\n", SD_C2);
 
 	//END
 	Divider(type_D2, type_D3, 3);
@@ -448,9 +448,31 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 	SD_C2 = sqrt(SD_C2/num_values);
 
 
+/*
+	printf("\n");
+	printf("%.2f\n",ll -> mean_c1[shape_array]);
+	printf("%.2f\n",ll -> SD_c1[shape_array]);
+	printf("%.2f\n",ll -> mean_c2[shape_array]);
+	printf("%.2f\n",ll -> SD_c2[shape_array]);
+*/
+
+	ll -> mean_c1[shape_array]	= mean_C1;
+	ll -> SD_c1[shape_array]	= SD_C1;
+	ll -> mean_c2[shape_array]	= mean_C2;
+	ll -> SD_c2[shape_array]	= SD_C2;
+
+/*
+	printf("\n\n");
+	printf("%.2f\n",ll -> mean_c1[shape_array]);
+	printf("%.2f\n",ll -> SD_c1[shape_array]);
+	printf("%.2f\n",ll -> mean_c2[shape_array]);
+	printf("%.2f\n",ll -> SD_c2[shape_array]);
+*/
+
 
 
 	Graphical(21, value_D1, value_D2, value_D3, value_C1, value_C2, num_values, SD_C1, SD_C2, mean_C1, mean_C2);
+	//PrintList(ll);
 }
 
 

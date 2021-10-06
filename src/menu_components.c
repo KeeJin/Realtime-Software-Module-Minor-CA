@@ -386,7 +386,7 @@ float ShapeChecker(int type, int dimension) {
     printf("\n\n");
     while (1) {
       printf("Object Selected: %s\n", object_type);
-      printf("Please enter object's %s (in mm):\n", type_D1);
+      printf("Please enter object's %s (in m):\n", type_D1);
       printf("Input: ");
       scanf("%f", &input_dimension);
       getchar();  // clear buffer
@@ -407,7 +407,7 @@ float ShapeChecker(int type, int dimension) {
     printf("\n\n");
     while (1) {
       printf("Object Selected: %s\n", object_type);
-      printf("Please enter object's %s (in mm):\n", type_D2);
+      printf("Please enter object's %s (in m):\n", type_D2);
       printf("Input: ");
       scanf("%f", &input_dimension);
       getchar();  // clear buffer
@@ -428,7 +428,7 @@ float ShapeChecker(int type, int dimension) {
     printf("\n\n");
     while (1) {
       printf("Object Selected: %s\n", object_type);
-      printf("Please enter object's %s (in mm):\n", type_D3);
+      printf("Please enter object's %s (in m):\n", type_D3);
       printf("Input: ");
       scanf("%f", &input_dimension);
       getchar();  // clear buffer
