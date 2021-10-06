@@ -56,7 +56,7 @@ ListNode *FindNode(LinkedList *ll, int index);
 int InsertNodeForMainLL(LinkedList *ll, int index, int t1, float d1, float d2,
                         float d3);
 int RemoveNode(LinkedList *ll, int index);
-int InsertNodeEx(LinkedListEx *ll, int index, int value);
+int InsertNodeEx(LinkedListEx *ll, int index, float value);
 int FreeMem(LinkedList *ll);
 int FreeMemEx(LinkedListEx *ll);
 

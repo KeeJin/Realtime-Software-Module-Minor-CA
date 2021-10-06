@@ -417,14 +417,31 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 		break;
 
 	}
-
 	
+	/*
 	float mean_C1 = ll -> mean_c1[shape_array];
 	float SD_C1 = ll -> SD_c1[shape_array];
 	float mean_C2 = ll -> mean_c2[shape_array];
 	float SD_C2 = ll -> SD_c2[shape_array];
+	*/
+
 
 	// calculate  SD
+	float mean_C1 = 0;
+	float SD_C1 = 0;
+	float mean_C2 = 0;
+	float SD_C2 = 0;
+
+	for(int i = 0; i < num_values; i++)
+	{
+		mean_C1 += value_C1[i]/num_values;
+		mean_C2 += value_C2[i]/num_values;
+	}
+
+	
+	
+
+	
 
 
 
@@ -444,7 +461,6 @@ void ConvertListEx(LinkedListEx* ll, int num_values, float *temp_list)
 	while (cur != NULL)
 	{
 		temp_list[i] =  cur->item;
-		printf("%.3f, %.3f\n",temp_list[i],cur->item);
 		cur = cur->next;
 		i++;
 	}

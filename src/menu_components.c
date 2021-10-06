@@ -93,6 +93,7 @@ void DataEntry(LinkedList* ll) {
   //printf("Current database contains the following: \n");
   //PrintList(ll);
   
+  /* debgugging
 	LinkedListEx extracted_list;
 	extracted_list.head=NULL;
 	extracted_list.tail=NULL;
@@ -100,7 +101,7 @@ void DataEntry(LinkedList* ll) {
   Extract(ll, &extracted_list, 11, 1);
   PrintListEx(&extracted_list);
   PrintList(ll);
-
+  */
 
   
 
