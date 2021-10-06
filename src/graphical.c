@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "graphical.h"
 
+#define MAXWIDTH 80 // CHANGE THIS ACCORDING TO SCREEN SIZE or preference. Max 180 (for 1980x1080 res)
 
 
 //default: "-"; 1: "_", 2: "=", 3: " " 
@@ -51,7 +52,7 @@ void DrawGraph(float *values, int num_values)
 	int i, j;
 	int max_val = 0;
 	int max_count = 0;
-	int max_width = 180; // CHANGE THIS ACCORDING TO SCREEN SIZE or preference. Max 180 (for 1980x1080 res)
+	int max_width = MAXWIDTH; 
 
 
 	for (i = 0; i < num_values; i++)
