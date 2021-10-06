@@ -1,6 +1,5 @@
 2. Object Query 	
-	Need to fix SD and mean
-	FKING VARIABLE ISSUE FML
+	Need to fix SD
 	
 		
 4. Load a Database
