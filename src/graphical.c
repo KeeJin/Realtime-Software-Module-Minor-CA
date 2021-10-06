@@ -222,26 +222,6 @@ void Graphical(int type, float* value_D1, float* value_D2, float* value_D3, floa
 
 {
 
-	/*
-	char c1_2D[] = "Area";
-	char c2_2D[] = "Perimeter";
-	char c1_3D[] = "Volume";
-	char c2_3D[] = "Surface Area";
-	char type_C1[7];
-	char type_C2[13];
-
-	char length[] = "Length";
-	char width[] = "Width";
-	char height[] = "Height";
-	char base[] = "Base";
-	char radius[] = "Radius";
-
-	char type_D1[7] = "";
-	char type_D2[7] = "";
-	char type_D3[7] = "";
-	*/
-
-
 	char c1_2D[] = "Area (m^2)";
 	char c2_2D[] = "Perimeter (m)";
 	char c1_3D[] = "Volume (m^3)";
