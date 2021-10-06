@@ -38,7 +38,7 @@ void GetUserMenuOption(char* user_input_ptr) {
   {
     PrintMenuOptions();
     printf("Hello user, what would you like to do today? (1/2/3/4/5)\n");
-    printf("Option: \n");
+    printf("Option: ");
     scanf("%d", &temp);
     getchar();  // clear buffer
 
@@ -126,7 +126,11 @@ void DataQuery(LinkedList* ll) {
   t1 = ObjectType(&message[0]);
 
   Extract(ll, &validity_check, t1, 1);
-  if (validity_check.size) Display(t1, ll, &extracted_list);
+  if (validity_check.size) 
+  {
+    printf("\n\nData Query for: ");
+    Display(t1, ll, &extracted_list);
+  }
   else printf("Item does not exist yet!\n");
   printf("\n\n");
 }
@@ -492,7 +496,7 @@ int ObjectType(char* message)
     printf("Please select object type:\n");
     printf("1. 2D\n");
     printf("2. 3D\n");
-    printf("Option: \n");
+    printf("Option: ");
     scanf("%d", &t1_1);
     getchar();  // clear buffer
     
@@ -517,7 +521,7 @@ int ObjectType(char* message)
       printf("2. Square\n");
       printf("3. Circle\n");
       printf("4. Triangle\n");
-      printf("Option: \n");
+      printf("Option: ");
       scanf("%d", &t1_2);
       getchar();  // clear buffer
       
@@ -542,7 +546,7 @@ int ObjectType(char* message)
       printf("3. Cylinder\n");
       printf("4. Sphere\n");
       printf("5. Cone\n");
-      printf("Option: \n");
+      printf("Option: ");
       scanf("%d", &t1_2);
       getchar();  // clear buffer
       
