@@ -426,7 +426,6 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 
 	// calculate mean and SD
 	
-	printf("%f, %f, %f, %f", SD_C1, SD_C2, mean_C1, mean_C2);
 
 /*
 	// cant get actual to work yet
