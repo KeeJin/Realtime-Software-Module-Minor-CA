@@ -24,7 +24,7 @@ void PrintMenuOptions() {
 
 void GetUserMenuOption(char* user_input_ptr) {
   int temp;
-  system("clear"); // comment this line for easy reading of error
+  //system("clear"); // comment this line for easy reading of error
   /*
   PrintMenuOptions();
   printf("Hello user, what would you like to do today? (1/2/3/4/5)\nOption: ");
@@ -55,7 +55,7 @@ void GetUserMenuOption(char* user_input_ptr) {
 }
 
 void DataEntry(LinkedList* ll) {
-  // printf("DataEntry() called. Functionality WIP\n");
+  printf("DataEntry() called. Functionality WIP\n");
   int t1 = 0;
   float d1, d2, d3;
 
@@ -92,6 +92,16 @@ void DataEntry(LinkedList* ll) {
   //uncomment this for debugging purposes.
   //printf("Current database contains the following: \n");
   //PrintList(ll);
+  
+	LinkedListEx extracted_list;
+	extracted_list.head=NULL;
+	extracted_list.tail=NULL;
+	extracted_list.size=0;
+  Extract(ll, &extracted_list, 11, 1);
+  PrintListEx(&extracted_list);
+  PrintList(ll);
+
+
   
 
 
@@ -133,6 +143,7 @@ void DataQuery(LinkedList* ll) {
   }
   else printf("\n\nItem does not exist yet!\n");
   printf("\n\n");
+
 }
 
 void SaveRequest(LinkedList* ll) {
@@ -314,7 +325,7 @@ int MainMenu(LinkedList* ll, const char* file_path) {
   return 1;
 }
 
-int ShapeChecker(int type, int dimension)
+float ShapeChecker(int type, int dimension)
 {
   float input_dimension = 0;
 	char length[] = "Length";

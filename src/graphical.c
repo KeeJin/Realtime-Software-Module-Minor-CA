@@ -334,6 +334,7 @@ void Graphical(int type, float* value_D1, float* value_D2, float* value_D3, floa
 	printf("     Table\n");
 	printf("==============\n");
 
+
 	DrawTable(type_D1, type_D2, type_D3, type_C1, type_C2, value_D1, value_D2, value_D3, value_C1, value_C2, num_values, SD_C1, SD_C2, mean_C1, mean_C2);
 }
 
@@ -417,23 +418,16 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 
 	}
 
-	//meanC1, SDC1, meanC2, SDC2, have not been extracted yet.
-
+	
 	float mean_C1 = ll -> mean_c1[shape_array];
 	float SD_C1 = ll -> SD_c1[shape_array];
 	float mean_C2 = ll -> mean_c2[shape_array];
 	float SD_C2 = ll -> SD_c2[shape_array];
 
-	// calculate mean and SD
-	
+	// calculate  SD
 
-/*
-	// cant get actual to work yet
-	mean_C1 = 10;
-	SD_C1 = 20;
-	mean_C2 = 30;
-	SD_C2 = 40;
-*/
+
+
 
 	Graphical(21, value_D1, value_D2, value_D3, value_C1, value_C2, num_values, SD_C1, SD_C2, mean_C1, mean_C2);
 }
@@ -450,6 +444,7 @@ void ConvertListEx(LinkedListEx* ll, int num_values, float *temp_list)
 	while (cur != NULL)
 	{
 		temp_list[i] =  cur->item;
+		printf("%.3f, %.3f\n",temp_list[i],cur->item);
 		cur = cur->next;
 		i++;
 	}
