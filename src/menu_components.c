@@ -22,11 +22,35 @@ void PrintMenuOptions() {
 }
 
 void GetUserMenuOption(char* user_input_ptr) {
+  int temp;
+  system("clear"); // comment this line for easy reading of error
+  /*
   PrintMenuOptions();
   printf("Hello user, what would you like to do today? (1/2/3/4/5)\nOption: ");
   scanf("%c", user_input_ptr);
   while (getchar() != '\n')
     ;  // clear buffer
+  */
+  //below code to only allow 1 character input.
+  printf("\n\n"); // to allow space for error printing.
+  while(1)
+  {
+    PrintMenuOptions();
+    printf("Hello user, what would you like to do today? (1/2/3/4/5)\n");
+    printf("Option: \n");
+    scanf("%d", &temp);
+    getchar();  // clear buffer
+
+    if((temp == 1) || (temp == 2) || (temp == 3) || (temp == 4) || (temp == 5) ) break;
+    else 
+    {
+      system("clear");
+      printf("Invalid input! Please choose only 1, 2, 3, 4 or 5!\n\n");
+    }
+  }
+
+  *user_input_ptr = (char)(temp + 48);
+
 }
 
 void DataEntry(LinkedList* ll) {
@@ -352,28 +376,39 @@ int ShapeChecker(int type, int dimension)
 
 int ObjectType()
 {
+  system("clear");
 
+  printf("\n\n"); // to allow space for error printing.
+  
   int t1_1 = 0;
   int t1_2 = 0;
   int t1 = 0;
+  int buf_pos;
 
   while(1)
   {
+    printf("Adding new object.\n");
     printf("Please select object type:\n");
     printf("1. 2D\n");
     printf("2. 3D\n");
     printf("Option: \n");
     scanf("%d", &t1_1);
     getchar();  // clear buffer
+    
     if((t1_1 == 1) || (t1_1 == 2)) break;
-    else printf("Please choose only 1 or 2!\n\n");
+    else 
+    {
+      system("clear");
+      printf("Invalid input! Please choose only 1 or 2!\n\n");
+    }
   }
 
-  printf("\n\n");
+  system("clear");
   if(t1_1 == 1) //2D
   {
     while(1)
     {
+      printf("Adding new object.\n");
       printf("Please select object shape for 2D:\n");
       printf("1. Rectangle\n");
       printf("2. Square\n");
@@ -382,8 +417,13 @@ int ObjectType()
       printf("Option: \n");
       scanf("%d", &t1_2);
       getchar();  // clear buffer
+      
       if((t1_2 == 1) || (t1_2 == 2) || (t1_2 == 3) || (t1_2 == 4) ) break;
-      else printf("Please choose only 1, 2, 3 or 4!\n\n");
+      else 
+      {
+        system("clear");
+        printf("Invalid input! Please choose only 1, 2, 3 or 4!\n\n");
+      }
     }
   }
 
@@ -392,6 +432,7 @@ int ObjectType()
   {
     while(1)
     {
+      printf("Adding new object.\n");
       printf("Please select object shape for 3D:\n");
       printf("1. Cube\n");
       printf("2. Block\n");
@@ -401,10 +442,18 @@ int ObjectType()
       printf("Option: \n");
       scanf("%d", &t1_2);
       getchar();  // clear buffer
+      
+      
       if((t1_2 == 1) || (t1_2 == 2) || (t1_2 == 3) || (t1_2 == 4) || (t1_2 == 5) ) break;
-      else printf("Please choose only 1, 2, 3, 4 or 5!\n\n");
+      else 
+      {
+        system("clear");
+        printf("Invalid input! Please choose only 1, 2, 3, 4 or 5!\n\n");
+      }
     }
   }
+
+  system("clear");
 
 
   t1 = t1_1 + t1_2*10;

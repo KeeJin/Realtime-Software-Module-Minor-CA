@@ -18,7 +18,6 @@ int main(int argc, char* argv[]) {
 
 
 
-
   while (MainMenu(&main_list, file_path));
 
   if (!FreeMem(&main_list)) {
