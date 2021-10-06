@@ -165,7 +165,7 @@ void SaveRequest(LinkedList* ll) {
   free(filename);
 }
 // function to save linked list to a file
-void SaveCurrentDB(char filepath[], LinkedList* ll) {
+void SaveCurrentDB(LinkedList *ll, char filepath[]) {
   ListNode* cached_node;
 
   FILE* file;
@@ -218,7 +218,7 @@ void LoadRequest(LinkedList* ll) {
     printf("Invalid filename entered. Aborting save...\n");
   } else {
     FreeMem(ll);
-    ll = LoadDB(filename);
+    LoadDB(ll, filename);
   }
   free(filename);
   // can comment this out later on if we dont want!!
@@ -228,30 +228,30 @@ void LoadRequest(LinkedList* ll) {
 }
 
 // function to load linked list from a file
-LinkedList* LoadDB(char filepath[]) {
+void LoadDB(LinkedList* ll, char filepath[]) {
   ListNode* cached_node = (ListNode*)malloc(sizeof(ListNode));
-  LinkedList* loaded_db = (LinkedList*)malloc(sizeof(LinkedList));
+  // LinkedList* loaded_db = (LinkedList*)malloc(sizeof(LinkedList));
   ListNode* head;  // points to the first node of the linked list in the file
   ListNode* tail;  // points to the last node of the linked list in the file
   tail = head = NULL;
 
   // initialise linked list
-  loaded_db->head = NULL;
-  loaded_db->tail = 0;
-  loaded_db->size = 0;
+  ll->head = NULL;
+  ll->tail = 0;
+  ll->size = 0;
 
   // try to open file
   FILE* file;
   file = fopen(filepath, "r");
   if (file == NULL) {
     printf("Couldn't load database. Defaulting to an empty one.\n");
-    return loaded_db;
+    return;
   }
 
   // extract LinkedList struct
-  if (!fread(loaded_db, sizeof(LinkedList), 1, file)) {
+  if (!fread(ll, sizeof(LinkedList), 1, file)) {
     printf("Couldn't load database. Defaulting to an empty one.\n");
-    return loaded_db;
+    return;
   }
 
   // reading nodes from the file
@@ -274,10 +274,9 @@ LinkedList* LoadDB(char filepath[]) {
   }
 
   fclose(file);
-  loaded_db->head = head;
-  loaded_db->tail = tail;
-  PrintList(loaded_db);
-  return loaded_db;
+  ll->head = head;
+  ll->tail = tail;
+  // PrintList(ll);
 }
 
 int MainMenu(LinkedList* ll, const char* file_path) {

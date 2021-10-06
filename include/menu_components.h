@@ -13,10 +13,10 @@ void DataQuery(LinkedList *ll);
 void DataEntry(LinkedList *ll);
 
 void SaveRequest(LinkedList* ll);
-void SaveCurrentDB(char filepath[], LinkedList *ll);
+void SaveCurrentDB(LinkedList *ll, char filepath[]);
 
 void LoadRequest(LinkedList* ll);
-LinkedList* LoadDB(char filepath[]);
+void LoadDB(LinkedList* ll, char filepath[]);
 
 float ShapeChecker(int type, int dimension);
 int ObjectType(char *message);
