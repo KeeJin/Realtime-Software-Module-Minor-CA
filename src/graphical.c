@@ -105,11 +105,14 @@ void DrawGraph(float *values, int num_values)
 		spacer[i] = '_';
 	}
 
-	printf("TEST %d\n",frequency[0]);
+	printf("TEST1 %d\n",frequency[0]);
+	printf("TEST2 %d\n",frequency[0]);
+	
 
-	spacer[spacer_size] = '\0';;
+	spacer[spacer_size] = '\0';
 
-	printf("TEST %d\n",frequency[0]);
+	printf("TEST3 %d\n",frequency[0]);
+	printf("TEST4 %d\n",frequency[0]);
 
 	for (i = 0; i < freq_size; i++)
 	{
