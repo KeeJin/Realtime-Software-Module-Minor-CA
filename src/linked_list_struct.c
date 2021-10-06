@@ -1,8 +1,7 @@
 #include "linked_list_struct.h"
 #include <math.h>
 
-int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
-              float *c2) {
+int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,float *c2) {
   int t1, shape, total_c1, total_c2, type_index, old_unique_count,
       new_unique_count;
   float variance, old_mean_c1, old_mean_c2, old_sd_c1, old_sd_c2;
@@ -173,7 +172,7 @@ void PrintListEx(LinkedListEx *ll) {
 
   if (cur == NULL) printf("Empty");
   while (cur != NULL) {
-    printf("%f\n", cur->item);
+    printf("%.3f\n", cur->item);
     cur = cur->next;
   }
   printf("\n");
@@ -274,7 +273,7 @@ int RemoveNode(LinkedList *ll, int index) {
   return 0;
 }
 
-int InsertNodeEx(LinkedListEx *ll, int index, int value) {
+int InsertNodeEx(LinkedListEx *ll, int index, float value) {
   ListNodeEx *pre, *cur;
 
   if (ll == NULL || index < 0 || index > ll->size + 1) return 0;
