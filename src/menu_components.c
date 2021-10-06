@@ -342,7 +342,7 @@ float ShapeChecker(int type, int dimension) {
       break;
 
     case 41:  // 2D right angle triangle
-      strcpy(object_type, "2D Triangle (right angled)");
+      strcpy(object_type, "2D Right Angled Triangle");
       strcpy(type_D1, base);
       strcpy(type_D2, height);
       break;
@@ -371,7 +371,7 @@ float ShapeChecker(int type, int dimension) {
       break;
 
     case 52:  // 3D cone
-      strcpy(object_type, "3D Cone");
+      strcpy(object_type, "3D Right Circular Cone");
       strcpy(type_D1, radius);
       strcpy(type_D2, height);
       break;
@@ -498,7 +498,7 @@ int ObjectType(char* message) {
       printf("1. Rectangle\n");
       printf("2. Square\n");
       printf("3. Circle\n");
-      printf("4. Triangle (right angled)\n");
+      printf("4. Right Angled Triangle\n");
       // printf("Option: ");
       scanf("%d", &t1_2);
       getchar();  // clear buffer
@@ -521,7 +521,7 @@ int ObjectType(char* message) {
       printf("2. Block\n");
       printf("3. Cylinder\n");
       printf("4. Sphere\n");
-      printf("5. Cone\n");
+      printf("5. Right Circular Cone\n");
       // printf("Option: ");
       scanf("%d", &t1_2);
       getchar();  // clear buffer
