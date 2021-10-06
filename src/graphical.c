@@ -225,8 +225,8 @@ void Graphical(int type, float* value_D1, float* value_D2, float* value_D3, floa
 	char c2_2D[] = "Perimeter";
 	char c1_3D[] = "Volume";
 	char c2_3D[] = "Surface Area";
-	char type_C1[13];
-	char type_C2[7];
+	char type_C1[7];
+	char type_C2[13];
 
 	char length[] = "Length";
 	char width[] = "Width";
@@ -471,7 +471,7 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 
 
 
-	Graphical(21, value_D1, value_D2, value_D3, value_C1, value_C2, num_values, SD_C1, SD_C2, mean_C1, mean_C2);
+	Graphical(shape, value_D1, value_D2, value_D3, value_C1, value_C2, num_values, SD_C1, SD_C2, mean_C1, mean_C2);
 	//PrintList(ll);
 }
 
