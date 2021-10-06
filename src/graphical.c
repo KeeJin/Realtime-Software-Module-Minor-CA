@@ -370,20 +370,71 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 	ConvertListEx(ex, num_values, temp_list);
 	CopyList(value_C2, num_values, temp_list);
 
+	int shape_array;
+	//9 for 9 different shapes in the order: 11,21,31,41,12,22,32,42,52
+	switch (shape)
+	{
+	case 11: //2D rectangle
+		shape_array = 0;
+		break;
+
+	case 21: //2D Square
+		shape_array = 1;
+		break;
+		
+
+	case 31: //2D circle
+		shape_array = 2;
+		break;
+
+	case 41: //2D right angle triangle
+		shape_array = 3;
+		break;
+
+	case 12: //3D cude
+		shape_array = 4;
+		break;
+
+	case 22: //3D block
+		shape_array = 5;
+		break;
+
+	case 32: //3D cylinder
+		shape_array = 6;
+		break;
+
+	case 42: //3D sphere
+		shape_array = 7;
+		break;
+
+	case 52: //3D cone
+		shape_array = 8;
+		break;
+
+	default:
+		printf("Error: none of type matches pre programmed types\n");
+		break;
+
+	}
+
 	//meanC1, SDC1, meanC2, SDC2, have not been extracted yet.
 
-	float mean_C1 = ll -> mean_c1[shape];
-	float SD_C1 = ll -> SD_c1[shape];
-	float mean_C2 = ll -> mean_c2[shape];
-	float SD_C2 = ll -> SD_c2[shape];
+	float mean_C1 = ll -> mean_c1[shape_array];
+	float SD_C1 = ll -> SD_c1[shape_array];
+	float mean_C2 = ll -> mean_c2[shape_array];
+	float SD_C2 = ll -> SD_c2[shape_array];
 
+	// calculate mean and SD
+	
+	printf("%f, %f, %f, %f", SD_C1, SD_C2, mean_C1, mean_C2);
 
+/*
 	// cant get actual to work yet
 	mean_C1 = 10;
 	SD_C1 = 20;
 	mean_C2 = 30;
 	SD_C2 = 40;
-
+*/
 
 	Graphical(21, value_D1, value_D2, value_D3, value_C1, value_C2, num_values, SD_C1, SD_C2, mean_C1, mean_C2);
 }
