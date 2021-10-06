@@ -131,7 +131,7 @@ void DataQuery(LinkedList* ll) {
     printf("\n\nData Query for: ");
     Display(t1, ll, &extracted_list);
   }
-  else printf("Item does not exist yet!\n");
+  else printf("\n\nItem does not exist yet!\n");
   printf("\n\n");
 }
 
