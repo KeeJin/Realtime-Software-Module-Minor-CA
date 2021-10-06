@@ -438,10 +438,14 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 		mean_C2 += value_C2[i]/num_values;
 	}
 
-	
-	
+	for(int i = 0; i < num_values; i++)
+	{	
+		SD_C1 += pow((value_C1[i] - mean_C1),2);
+		SD_C2 += pow((value_C2[i] - mean_C2),2);
+	}
 
-	
+	SD_C1 = sqrt(SD_C1/num_values);
+	SD_C2 = sqrt(SD_C2/num_values);
 
 
 
