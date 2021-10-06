@@ -76,7 +76,7 @@ void DrawGraph(float *values, int num_values)
 	if (step < 1) step = 1;
 
 
-	freq_size = freq_size / step + 1;
+	freq_size = freq_size / step + 2;
 
 
 
@@ -94,6 +94,14 @@ void DrawGraph(float *values, int num_values)
 		
 		if (frequency[index] > max_count) max_count = frequency[index];
 	}
+
+	/*	
+	// for debugging
+	printf("\n");
+	for (i = 0; i < freq_size; i++) printf("%d\n", frequency[i]);
+	printf("\n");
+	*/
+	
 	
 	//NEW VERSION
 	int k;
@@ -102,8 +110,8 @@ void DrawGraph(float *values, int num_values)
 	
 	for (i = 0; i < freq_size; i++)
 	{
-		if (i) printf("                 |");
-		else printf("                  ");
+		if (i) printf("                   |");
+		else printf("                    ");
 
 		for (j = 0; j < frequency[i]; j++)
 		{
@@ -115,7 +123,7 @@ void DrawGraph(float *values, int num_values)
 
 		printf("\n");
 
-		printf("%4d <= x < %4d |", min_val + i * step, min_val + i * step + step);
+		printf("%5d <= x < %5d |", min_val + i * step, min_val + i * step + step);
 		for (j = 0; j < frequency[i]; j++)
 		{
 			for (k = 0; k < spacer_size; k++)
@@ -126,7 +134,7 @@ void DrawGraph(float *values, int num_values)
 
 		if (frequency[i]) printf("|");
 		printf("\n");
-		if (freq_size - i - 1) printf("                 |\n");
+		if (freq_size - i - 1) printf("                   |\n");
 
 	}
 
