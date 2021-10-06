@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "graphical.h"
 
-#define MAXWIDTH 80 // CHANGE THIS ACCORDING TO SCREEN SIZE or preference. Max 180 (for 1980x1080 res)
+#define MAXWIDTH 87 // CHANGE THIS ACCORDING TO SCREEN SIZE or preference. Max 180 (for 1980x1080 res)
 
 
 //default: "-"; 1: "_", 2: "=", 3: " " 
@@ -12,35 +12,35 @@ void Divider(char* type_D2, char* type_D3, int type)
 	switch (type)
 	{
 	case 1: //Top (Underscore)
-		printf(" ______________");
-		if (type_D2[0]) printf("_______________");
-		if (type_D3[0]) printf("_______________");
-		printf("_______________");
-		printf("_______________\n");
+		printf(" ____________________");
+		if (type_D2[0]) printf("_____________________");
+		if (type_D3[0]) printf("_____________________");
+		printf("_____________________");
+		printf("_____________________\n");
 		break;
 
 	case 2: // "=" divider
-		printf("|==============|");
-		if (type_D2[0]) printf("==============|");
-		if (type_D3[0]) printf("==============|");
-		printf("==============|");
-		printf("==============|\n");
+		printf("|====================|");
+		if (type_D2[0]) printf("====================|");
+		if (type_D3[0]) printf("====================|");
+		printf("====================|");
+		printf("====================|\n");
 		break;
 
 	case 3: //Bot 
-		printf("|______________|");
-		if (type_D2[0]) printf("______________|");
-		if (type_D3[0]) printf("______________|");
-		printf("______________|");
-		printf("______________|\n");
+		printf("|____________________|");
+		if (type_D2[0]) printf("____________________|");
+		if (type_D3[0]) printf("____________________|");
+		printf("____________________|");
+		printf("____________________|\n");
 		break;
 
 	default: // "-" divider
-		printf("|--------------|");
-		if (type_D2[0]) printf("--------------|");
-		if (type_D3[0]) printf("--------------|");
-		printf("--------------|");
-		printf("--------------|\n");
+		printf("|--------------------|");
+		if (type_D2[0]) printf("--------------------|");
+		if (type_D3[0]) printf("--------------------|");
+		printf("--------------------|");
+		printf("--------------------|\n");
 		break;
 
 	}
@@ -176,11 +176,11 @@ void DrawTable(char* type_D1, char* type_D2, char* type_D3, char* type_C1, char*
 
 	Divider(type_D2, type_D3, 1);
 
-	printf("|%13s |", type_D1);
-	if (type_D2[0]) printf("%13s |", type_D2);
-	if (type_D3[0]) printf("%13s |", type_D3);
-	printf("%13s |", type_C1);
-	printf("%13s |\n", type_C2);
+	printf("|%19s |", type_D1);
+	if (type_D2[0]) printf("%19s |", type_D2);
+	if (type_D3[0]) printf("%19s |", type_D3);
+	printf("%19s |", type_C1);
+	printf("%19s |\n", type_C2);
 
 	Divider(type_D2, type_D3, 2);
 
@@ -188,29 +188,29 @@ void DrawTable(char* type_D1, char* type_D2, char* type_D3, char* type_C1, char*
 
 	for (int i = 0; i < num_values; i++)
 	{
-		printf("|%13.4f |", value_D1[i]);
-		if (type_D2[0]) printf("%13.2f |", value_D2[i]);
-		if (type_D3[0]) printf("%13.2f |", value_D3[i]);
-		printf("%13.4f |", value_C1[i]);
-		printf("%13.4f |\n", value_C2[i]);
+		printf("|%19.4f |", value_D1[i]);
+		if (type_D2[0]) printf("%19.4f |", value_D2[i]);
+		if (type_D3[0]) printf("%19.4f |", value_D3[i]);
+		printf("%19.4f |", value_C1[i]);
+		printf("%19.4f |\n", value_C2[i]);
 
 		Divider(type_D2, type_D3, 0);
 	}
 
 	//Mean
-	printf("|     MEAN     |");
-	if (type_D2[0]) printf("     MEAN     |");
-	if (type_D3[0]) printf("     MEAN     |");
-	printf("%13.4f |", mean_C1);
-	printf("%13.4f |\n", mean_C2);
+	printf("|        MEAN        |");
+	if (type_D2[0]) printf("        MEAN        |");
+	if (type_D3[0]) printf("        MEAN        |");
+	printf("%19.4f |", mean_C1);
+	printf("%19.4f |\n", mean_C2);
 
 	//SD
 	Divider(type_D2, type_D3, 0);
-	printf("|      SD      |");
-	if (type_D2[0]) printf("      SD      |");
-	if (type_D3[0]) printf("      SD      |");
-	printf("%13.4f |", SD_C1);
-	printf("%13.4f |\n", SD_C2);
+	printf("|         SD         |");
+	if (type_D2[0]) printf("         SD         |");
+	if (type_D3[0]) printf("         SD         |");
+	printf("%19.4f |", SD_C1);
+	printf("%19.4f |\n", SD_C2);
 
 	//END
 	Divider(type_D2, type_D3, 3);
@@ -221,6 +221,8 @@ void Graphical(int type, float* value_D1, float* value_D2, float* value_D3, floa
 	int num_values, float SD_C1, float SD_C2, float mean_C1, float mean_C2)
 
 {
+
+	/*
 	char c1_2D[] = "Area";
 	char c2_2D[] = "Perimeter";
 	char c1_3D[] = "Volume";
@@ -237,6 +239,25 @@ void Graphical(int type, float* value_D1, float* value_D2, float* value_D3, floa
 	char type_D1[7] = "";
 	char type_D2[7] = "";
 	char type_D3[7] = "";
+	*/
+
+
+	char c1_2D[] = "Area (m^2)";
+	char c2_2D[] = "Perimeter (m)";
+	char c1_3D[] = "Volume (m^3)";
+	char c2_3D[] = "Surface Area (m^2)";
+	char type_C1[13];
+	char type_C2[19];
+
+	char length[] = "Length (m)";
+	char width[] = "Width (m)";
+	char height[] = "Height (m)";
+	char base[] = "Base (m)";
+	char radius[] = "Radius (m)";
+
+	char type_D1[11] = "";
+	char type_D2[11] = "";
+	char type_D3[11] = "";
 
 
 
