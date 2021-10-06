@@ -117,7 +117,7 @@ int Extract(LinkedList *ll, LinkedListEx *ex, int t1, int selector) {
           break;
         case 3:  // extract d3
           if (t1 % 10 != 2) {
-            printf("No third dimension in 2D shapes. Exiting function....");
+            //printf("No third dimension in 2D shapes. Exiting function....");
             return 0;
           }
           i = InsertNodeEx(ex, 0, mov->d3);
@@ -140,7 +140,7 @@ int Extract(LinkedList *ll, LinkedListEx *ex, int t1, int selector) {
     }
     mov = mov->next;
   }
-  if (i == 1) printf("Extraction complete");
+  if (i == 1) //printf("Extraction complete");
   return 1;
 }
 

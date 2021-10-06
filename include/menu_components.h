@@ -19,6 +19,6 @@ void LoadRequest(LinkedList* ll);
 LinkedList* LoadDB(char filepath[]);
 
 int ShapeChecker(int type, int dimension);
-int ObjectType();
+int ObjectType(char *message);
 
 #endif /* MENU_COMPONENTS */

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <string.h>
 // #define QNX
 
 void PrintMenuHeader() {
@@ -58,26 +59,51 @@ void DataEntry(LinkedList* ll) {
   int t1 = 0;
   float d1, d2, d3;
 
-  t1 = ObjectType();
+  char message[] = "Adding new object";
+  t1 = ObjectType(&message[0]);
 
-  printf("Object Selected: ");
-  ShapeChecker(t1,4);
+  
   d1 = ShapeChecker(t1, 1);
   d2 = ShapeChecker(t1, 2);
   d3 = ShapeChecker(t1, 3);
 
+
+  
   if (InsertNodeForMainLL(ll, 0, t1, d1, d2, d3) == 0)
     printf("data entry failed.");
 
-  // can comment this out later on if we dont want!!
-  printf("Current database contains the following: \n");
-  PrintList(ll);
+  else
+  {
+    printf("\n\nObject added successfully!\n");
+    ShapeChecker(t1, 4);
+    ShapeChecker(t1, 5);
+    printf("%.4f\n",d1);
+    if(d2) 
+    {
+      ShapeChecker(t1, 6);
+      printf("%.4f\n",d2);
+    }
+    if(d3) 
+    {
+      ShapeChecker(t1, 7);
+      printf("%.4f\n",d3);
+    }
+  }  
+  //uncomment this for debugging purposes.
+  //printf("Current database contains the following: \n");
+  //PrintList(ll);
+  
+
+
+
+  /*
 #ifdef QNX
   delay(1000);
 #else
   sleep(1);
 #endif
-  printf("==========================================\n\n\n\n");
+  printf("==========================================\n\n\n\n");*/
+  printf("\n\n");
 }
 
 void DataQuery(LinkedList* ll) {
@@ -96,21 +122,13 @@ void DataQuery(LinkedList* ll) {
 	validity_check.size=0;
 
   int t1;
-  printf("Input t1\nInput: ");
-  scanf("%d", &t1);
-  getchar();  // clear buffer
+  char message[] = "Object query selected.";
+  t1 = ObjectType(&message[0]);
 
   Extract(ll, &validity_check, t1, 1);
   if (validity_check.size) Display(t1, ll, &extracted_list);
   else printf("Item does not exist yet!\n");
-
-
-#ifdef QNX
-  delay(1000);
-#else
-  sleep(1);
-#endif
-  printf("==========================================\n\n\n\n");
+  printf("\n\n");
 }
 
 void SaveRequest(LinkedList* ll) {
@@ -255,22 +273,34 @@ int MainMenu(LinkedList* ll, const char* file_path) {
     switch (user_option) {
       case '1':
         DataEntry(ll);
+        printf("Press 'Enter' to continue...\n");
+        getchar();
         break;
       case '2':
         DataQuery(ll);
+        printf("Press 'Enter' to continue...\n");
+        getchar();
         break;
       case '3':
         SaveRequest(ll);
+        printf("Press 'Enter' to continue...\n");
+        getchar();
         break;
       case '4':
         LoadRequest(ll);
+        printf("Press 'Enter' to continue...\n");
+        getchar();
         break;
       case '5':
         printf("Exiting program now. Goodbye!\n");
+        printf("Press 'Enter' to continue...\n");
+        getchar();
         return 0;
         break;
       default:
         printf("Invalid option! Please try again.\n");
+        printf("Press 'Enter' to continue...\n");
+        getchar();
         error = 1;
         break;
     }
@@ -292,56 +322,57 @@ int ShapeChecker(int type, int dimension)
 	char type_D1[7] = "";
 	char type_D2[7] = "";
 	char type_D3[7] = "";
+  char object_type[13];
 
 	switch (type)
 	{
 	case 11: //2D rectangle
-		if(dimension == 4) printf("2D Rectangle\n");
+		strcpy(object_type,"2D Rectangle");
 		strcpy(type_D1, length);
 		strcpy(type_D2, width);
 		break;
 
 	case 21: //2D Square
-		if(dimension == 4) printf("2D Square\n");
+		strcpy(object_type,"2D Square");
 		strcpy(type_D1, length);
 		break;
 
 	case 31: //2D circle
-		if(dimension == 4) printf("2D Circle\n");
+		strcpy(object_type,"2D Circle");
 		strcpy(type_D1, radius);
 		break;
 
 	case 41: //2D right angle triangle
-		if(dimension == 4) printf("2D Triangle\n");
+		strcpy(object_type,"2D Triangle");
 		strcpy(type_D1, base);
 		strcpy(type_D2, height);
 		break;
 
 	case 12: //3D cude
-		if(dimension == 4) printf("3D Cube\n");
+		strcpy(object_type,"3D Cube");
 		strcpy(type_D1, length);
 		break;
 
 	case 22: //3D block
-		if(dimension == 4) printf("3D Block\n");
+		strcpy(object_type,"3D Block");
 		strcpy(type_D1, length);
 		strcpy(type_D2, width);
 		strcpy(type_D3, height);
 		break;
 
 	case 32: //3D cylinder
-		if(dimension == 4) printf("3D Cylinder\n");
+		strcpy(object_type,"3D Cylinder");
 		strcpy(type_D1, radius);
 		strcpy(type_D2, height);
 		break;
 
 	case 42: //3D sphere
-		if(dimension == 4) printf("3D Sphere\n");
+		strcpy(object_type,"3D Sphere");
 		strcpy(type_D1, radius);
 		break;
 
 	case 52: //3D cone
-		if(dimension == 4) printf("3D Cone\n");
+		strcpy(object_type,"3D Cone");
 		strcpy(type_D1, radius);
 		strcpy(type_D2, height);
 		break;
@@ -352,29 +383,100 @@ int ShapeChecker(int type, int dimension)
 
 	}
 
+
+
   if((dimension == 1) && type_D1[0])
   {
-    input_dimension = 1;
+    system("clear");
+    printf("\n\n");
+    while(1)
+    {
+      printf("Object Selected: %s\n",object_type);
+      printf("Please enter object's %s (in mm):\n", type_D1);
+      printf("Input: ");
+      scanf("%f", &input_dimension);
+      getchar();  // clear buffer
+      
+      if(input_dimension) break;
+      else 
+      {
+        system("clear");
+        printf("Invalid input! Please enter a non-zero float value!\n\n");
+      }
+    }
+    system("clear"); 
     return input_dimension;
   }
 
   if((dimension == 2) && type_D2[0])
-  {
-    input_dimension = 2;
+  { 
+    system("clear");
+    printf("\n\n");
+    while(1)
+    {
+      printf("Object Selected: %s\n",object_type);
+      printf("Please enter object's %s (in mm):\n", type_D2);
+      printf("Input: ");
+      scanf("%f", &input_dimension);
+      getchar();  // clear buffer
+      
+      if(input_dimension) break;
+      else 
+      {
+        system("clear");
+        printf("Invalid input! Please enter a non-zero float value!\n\n");
+      }
+    }
+    system("clear"); 
     return input_dimension;
   }
 
   if((dimension == 3) && type_D3[0])
   {
-    input_dimension = 3;
+    system("clear");
+    printf("\n\n");
+    while(1)
+    {
+      printf("Object Selected: %s\n",object_type);
+      printf("Please enter object's %s (in mm):\n", type_D3);
+      printf("Input: ");
+      scanf("%f", &input_dimension);
+      getchar();  // clear buffer
+      
+      if(input_dimension) break;
+      else 
+      {
+        system("clear");
+        printf("Invalid input! Please enter a non-zero float value!\n\n");
+      }
+    }
+    system("clear"); 
     return input_dimension;
   }
 
-
+  if(dimension == 4)
+  {
+    printf("Object Selected: %s\n\nDimensions Input:\n",object_type);
+  }
+  
+  if(dimension == 5)
+  {
+    printf("%-7s = ",type_D1);
+  }
+  
+  if(dimension == 6)
+  {
+    printf("%-7s = ",type_D2);
+  }
+  
+  if(dimension == 7)
+  {
+    printf("%-7s = ",type_D3);
+  }
 
 }
 
-int ObjectType()
+int ObjectType(char* message)
 {
   system("clear");
 
@@ -383,11 +485,10 @@ int ObjectType()
   int t1_1 = 0;
   int t1_2 = 0;
   int t1 = 0;
-  int buf_pos;
 
   while(1)
   {
-    printf("Adding new object.\n");
+    printf("%s\n",message);
     printf("Please select object type:\n");
     printf("1. 2D\n");
     printf("2. 3D\n");
@@ -404,11 +505,13 @@ int ObjectType()
   }
 
   system("clear");
+  printf("\n\n"); // to allow space for error printing.
+
   if(t1_1 == 1) //2D
   {
     while(1)
     {
-      printf("Adding new object.\n");
+      printf("%s\n",message);
       printf("Please select object shape for 2D:\n");
       printf("1. Rectangle\n");
       printf("2. Square\n");
@@ -432,7 +535,7 @@ int ObjectType()
   {
     while(1)
     {
-      printf("Adding new object.\n");
+      printf("%s\n",message);
       printf("Please select object shape for 3D:\n");
       printf("1. Cube\n");
       printf("2. Block\n");
