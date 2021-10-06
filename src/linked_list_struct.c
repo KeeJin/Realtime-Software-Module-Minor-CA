@@ -46,12 +46,12 @@ int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
       type_index = 6;
       break;
     case 42:  // 3D sphere
-      *c1 = PI * pow(d1, 3);
+      *c1 = 4 * PI * pow(d1, 3) / 3;
       *c2 = 4 * PI * d1 * d1;
       type_index = 7;
       break;
-    case 52:  // 3D cone
-      *c1 = PI * d1 * d1 * d2 * 1 / 3;
+    case 52:  // 3D right circular cone
+      *c1 = PI * d1 * d1 * d2 / 3;
       *c2 = PI * d1 * (d1 + sqrt(d2 * d2 + d1 * d1));
       type_index = 8;
       break;
