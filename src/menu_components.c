@@ -324,6 +324,10 @@ float ShapeChecker(int type, int dimension) {
   char type_D3[7] = "";
   char object_type[27];
 
+  //Limits for input --> lower_limit < x < upper_limit
+  const int upper_limit = 100;
+  const int lower_limit = 0;
+
   switch (type) {
     case 11:  // 2D rectangle
       strcpy(object_type, "2D Rectangle");
@@ -386,16 +390,16 @@ float ShapeChecker(int type, int dimension) {
     printf("\n\n");
     while (1) {
       printf("Object Selected: %s\n", object_type);
-      printf("Please enter object's %s (in m):\n", type_D1);
+      printf("Please enter object's %s (0 < x < 100, in m):\n", type_D1);
       printf("Input: ");
       scanf("%f", &input_dimension);
       getchar();  // clear buffer
 
-      if (input_dimension)
+      if ((lower_limit < input_dimension) && (input_dimension < upper_limit))
         break;
       else {
         system("clear");
-        printf("Invalid input! Please enter a non-zero float value!\n\n");
+        printf("Invalid input! Please enter a float value between 0 and 100!\n\n");
       }
     }
     system("clear");
@@ -407,16 +411,16 @@ float ShapeChecker(int type, int dimension) {
     printf("\n\n");
     while (1) {
       printf("Object Selected: %s\n", object_type);
-      printf("Please enter object's %s (in m):\n", type_D2);
+      printf("Please enter object's %s (0 < x < 100, in m):\n", type_D2);
       printf("Input: ");
       scanf("%f", &input_dimension);
       getchar();  // clear buffer
 
-      if (input_dimension)
+      if ((lower_limit < input_dimension) && (input_dimension < upper_limit))
         break;
       else {
         system("clear");
-        printf("Invalid input! Please enter a non-zero float value!\n\n");
+        printf("Invalid input! Please enter a float value between 0 and 100!\n\n");
       }
     }
     system("clear");
@@ -428,16 +432,16 @@ float ShapeChecker(int type, int dimension) {
     printf("\n\n");
     while (1) {
       printf("Object Selected: %s\n", object_type);
-      printf("Please enter object's %s (in m):\n", type_D3);
+      printf("Please enter object's %s (0 < x < 100, in m):\n", type_D3);
       printf("Input: ");
       scanf("%f", &input_dimension);
       getchar();  // clear buffer
 
-      if (input_dimension)
+      if ((lower_limit < input_dimension) && (input_dimension < upper_limit))
         break;
       else {
         system("clear");
-        printf("Invalid input! Please enter a non-zero float value!\n\n");
+        printf("Invalid input! Please enter a float value between 0 and 100!\n\n");
       }
     }
     system("clear");
