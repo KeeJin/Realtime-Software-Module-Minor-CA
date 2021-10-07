@@ -7,11 +7,13 @@
 // #define QNX
 
 void PrintMenuHeader() {
-  printf("-------------------------------\n");
+  printf("===============================\n");
   printf("SHAPE DATABASE SEARCH ENGINE\n");
-  printf("-------------------------------\n");
+  printf("===============================\n");
 }
 void PrintMenuOptions() {
+  PrintMenuHeader();
+  printf("\n-------------------------------\n");
   printf("MENU OPTIONS\n");
   printf("-------------------------------\n");
   printf("1. New Object\n");
