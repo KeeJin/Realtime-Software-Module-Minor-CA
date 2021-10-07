@@ -1,0 +1,10 @@
+ Compiling
+1) Navigate file "Realtime-Software-Module-Project"
+2) Press shift and right-click.
+3) Select "open powershell window here".
+4) run this command "& "scripts/build_app_shape_database_WINDOWS.ps1""
+5)Program will run automatically.
+
+Running Program
+1) Navigate file "Realtime-Software-Module-Project/build/bin".
+2) open "app_main.exe"

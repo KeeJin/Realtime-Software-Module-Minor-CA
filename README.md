@@ -5,13 +5,9 @@
 ```
 git clone https://github.com/KeeJin/Realtime-Software-Module-Project.git
 ```
-2. Checkout the correct branch:
+2. Run the bash script from within the 'scripts' folder:
 ```
-git checkout feature-code_integration
-```
-3. Run the bash script from within the 'scripts' folder:
-```
-cd scripts
+cd Realtime-Software-Module-Project/scripts
 ./build_app_shape_database.sh
 ```
 ### If the bash script fails to run, you might not have the necessary execute permissions (check with ```ls -la```). If this is the issue, run: 

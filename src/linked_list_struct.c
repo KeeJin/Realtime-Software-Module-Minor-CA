@@ -1,11 +1,9 @@
 #include "linked_list_struct.h"
 #include <math.h>
 
-int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
-              float *c2) {
-  int t1, shape, total_c1, total_c2, type_index, old_unique_count,
-      new_unique_count;
-  float variance, old_mean_c1, old_mean_c2, old_sd_c1, old_sd_c2;
+int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,float *c2) {
+  int t1, shape, type_index, old_unique_count, new_unique_count;
+  float total_c1, total_c2, old_mean_c1, old_mean_c2;
   if (type == 0 || d1 == 0) {
     perror("Initialising error in Calculation\n");
     return 0;
@@ -47,12 +45,12 @@ int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
       type_index = 6;
       break;
     case 42:  // 3D sphere
-      *c1 = PI * pow(d1, 3);
+      *c1 = 4 * PI * pow(d1, 3) / 3;
       *c2 = 4 * PI * d1 * d1;
       type_index = 7;
       break;
-    case 52:  // 3D cone
-      *c1 = PI * d1 * d1 * d2 * 1 / 3;
+    case 52:  // 3D right circular cone
+      *c1 = PI * d1 * d1 * d2 / 3;
       *c2 = PI * d1 * (d1 + sqrt(d2 * d2 + d1 * d1));
       type_index = 8;
       break;
@@ -62,7 +60,7 @@ int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
           "object entry...\n");
       return 0;
   }
-
+/* //OLD VERSION
   // calculate mean_c1 and sd_c1
   old_mean_c1 = ll->mean_c1[type_index];
   old_sd_c1 = ll->SD_c1[type_index];
@@ -70,9 +68,14 @@ int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
   new_unique_count = old_unique_count + 1;
   total_c1 = old_mean_c1 * old_unique_count;
   total_c1 += *c1;
-  variance = (((new_unique_count - 2) * old_sd_c1 +
-               ((*c1 - old_mean_c1) * (*c1 - old_mean_c1))) /
-              (new_unique_count - 1));
+
+  if(old_unique_count == 0) {
+    variance = 0.0;
+  } else {
+    variance = (((new_unique_count - 2) * old_sd_c1 +
+                ((*c1 - old_mean_c1) * (*c1 - old_mean_c1))) /
+                (new_unique_count - 1));
+  }
 
   // update with new values
   ll->mean_c1[type_index] = total_c1 / new_unique_count;
@@ -91,6 +94,28 @@ int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
   ll->mean_c2[type_index] = total_c2 / new_unique_count;
   ll->SD_c2[type_index] = sqrt(variance);
   ll->count[type_index] += 1;
+  */
+
+   // calculate mean
+  old_unique_count = ll->count[type_index];
+  new_unique_count = old_unique_count + 1;
+  
+  old_mean_c1 = ll->mean_c1[type_index];
+  total_c1 = old_mean_c1 * old_unique_count;
+  total_c1 += *c1;
+  
+  ll->mean_c1[type_index] = total_c1 / new_unique_count;
+  
+  old_mean_c2 = ll->mean_c2[type_index];
+  total_c2 = old_mean_c2 * old_unique_count;
+  total_c2 += *c2;
+  
+  ll->mean_c2[type_index] = total_c2 / new_unique_count;
+  
+  ll->count[type_index] += 1;
+
+  ll->SD_c1[type_index] += pow(*c1,2);
+  ll->SD_c2[type_index] += pow(*c2,2);
 
   return 1;
 }
@@ -117,7 +142,7 @@ int Extract(LinkedList *ll, LinkedListEx *ex, int t1, int selector) {
           break;
         case 3:  // extract d3
           if (t1 % 10 != 2) {
-            printf("No third dimension in 2D shapes. Exiting function....");
+            //printf("No third dimension in 2D shapes. Exiting function....");
             return 0;
           }
           i = InsertNodeEx(ex, 0, mov->d3);
@@ -140,7 +165,7 @@ int Extract(LinkedList *ll, LinkedListEx *ex, int t1, int selector) {
     }
     mov = mov->next;
   }
-  if (i == 1) printf("Extraction complete");
+  if (i == 1) //printf("Extraction complete");
   return 1;
 }
 
@@ -173,7 +198,7 @@ void PrintListEx(LinkedListEx *ll) {
 
   if (cur == NULL) printf("Empty");
   while (cur != NULL) {
-    printf("%f\n", cur->item);
+    printf("%.3f\n", cur->item);
     cur = cur->next;
   }
   printf("\n");
@@ -274,7 +299,7 @@ int RemoveNode(LinkedList *ll, int index) {
   return 0;
 }
 
-int InsertNodeEx(LinkedListEx *ll, int index, int value) {
+int InsertNodeEx(LinkedListEx *ll, int index, float value) {
   ListNodeEx *pre, *cur;
 
   if (ll == NULL || index < 0 || index > ll->size + 1) return 0;

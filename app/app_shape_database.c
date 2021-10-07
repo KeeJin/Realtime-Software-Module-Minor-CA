@@ -14,8 +14,8 @@ int main(int argc, char* argv[]) {
     main_list.SD_c2[i] = 0;
     main_list.mean_c1[i] = 0;
     main_list.mean_c2[i] = 0;
+    main_list.count[i] = 0;
   }
-
 
 
 
