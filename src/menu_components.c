@@ -25,7 +25,7 @@ void PrintMenuOptions() {
 void GetUserMenuOption(char* user_input_ptr) {
   int temp;
   int c;
-  // system("clear"); // comment this line for easy reading of error
+  system("clear"); // comment this line for easy reading of error
   /*
   PrintMenuOptions();
   printf("Hello user, what would you like to do today? (1/2/3/4/5)\nOption: ");
