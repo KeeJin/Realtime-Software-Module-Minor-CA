@@ -24,6 +24,7 @@ void PrintMenuOptions() {
 
 void GetUserMenuOption(char* user_input_ptr) {
   int temp;
+  int c;
   // system("clear"); // comment this line for easy reading of error
   /*
   PrintMenuOptions();
@@ -39,7 +40,7 @@ void GetUserMenuOption(char* user_input_ptr) {
     printf("Hello user, what would you like to do today? (1/2/3/4/5)\n");
     // printf("Option: ");
     scanf("%d", &temp);
-    getchar();  // clear buffer
+    while ((c = getchar()) != '\n' && c != EOF);
 
     if ((temp == 1) || (temp == 2) || (temp == 3) || (temp == 4) || (temp == 5))
       break;
@@ -266,6 +267,7 @@ void LoadDB(LinkedList* ll, char filepath[]) {
 }
 
 int MainMenu(LinkedList* ll, const char* file_path) {
+  int c;
   PrintMenuHeader();
   while (1) {
     char user_option;
@@ -275,33 +277,33 @@ int MainMenu(LinkedList* ll, const char* file_path) {
       case '1':
         DataEntry(ll);
         printf("Press 'Enter' to continue...\n");
-        getchar();
+        while ((c = getchar()) != '\n' && c != EOF);
         break;
       case '2':
         DataQuery(ll);
         printf("Press 'Enter' to continue...\n");
-        getchar();
+        while ((c = getchar()) != '\n' && c != EOF);
         break;
       case '3':
         SaveRequest(ll);
         printf("Press 'Enter' to continue...\n");
-        getchar();
+        while ((c = getchar()) != '\n' && c != EOF);
         break;
       case '4':
         LoadRequest(ll);
         printf("Press 'Enter' to continue...\n");
-        getchar();
+        while ((c = getchar()) != '\n' && c != EOF);
         break;
       case '5':
         printf("Exiting program now. Goodbye!\n");
         printf("Press 'Enter' to continue...\n");
-        getchar();
+        while ((c = getchar()) != '\n' && c != EOF);
         return 0;
         break;
       default:
         printf("Invalid option! Please try again.\n");
         printf("Press 'Enter' to continue...\n");
-        getchar();
+        while ((c = getchar()) != '\n' && c != EOF);
         error = 1;
         break;
     }
@@ -312,6 +314,7 @@ int MainMenu(LinkedList* ll, const char* file_path) {
 }
 
 float ShapeChecker(int type, int dimension) {
+  int c;
   float input_dimension = 0;
   char length[] = "Length";
   char width[] = "Width";
@@ -391,8 +394,8 @@ float ShapeChecker(int type, int dimension) {
     while (1) {
       printf("Object Selected: %s\n", object_type);
       printf("Please enter object's %s (0 < x < 100, in m):\n", type_D1);
-      scanf("%f", &input_dimension);
-      getchar();  // clear buffer
+      scanf("%f", &input_dimension);  
+      while ((c = getchar()) != '\n' && c != EOF);
 
       if ((lower_limit <= input_dimension) && (input_dimension <= upper_limit))
         break;
@@ -412,7 +415,7 @@ float ShapeChecker(int type, int dimension) {
       printf("Object Selected: %s\n", object_type);
       printf("Please enter object's %s (0 < x < 100, in m):\n", type_D2);
       scanf("%f", &input_dimension);
-      getchar();  // clear buffer
+      while ((c = getchar()) != '\n' && c != EOF);
 
       if ((lower_limit <= input_dimension) && (input_dimension <= upper_limit))
         break;
@@ -432,7 +435,7 @@ float ShapeChecker(int type, int dimension) {
       printf("Object Selected: %s\n", object_type);
       printf("Please enter object's %s (0 < x < 100, in m):\n", type_D3);
       scanf("%f", &input_dimension);
-      getchar();  // clear buffer
+      while ((c = getchar()) != '\n' && c != EOF);
 
       if ((lower_limit <= input_dimension) && (input_dimension <= upper_limit))
         break;
@@ -467,6 +470,7 @@ int ObjectType(char* message) {
 
   printf("\n\n");  // to allow space for error printing.
 
+  int c;
   int t1_1 = 0;
   int t1_2 = 0;
   int t1 = 0;
@@ -478,7 +482,7 @@ int ObjectType(char* message) {
     printf("2. 3D\n");
     // printf("Option: ");
     scanf("%d", &t1_1);
-    getchar();  // clear buffer
+    while ((c = getchar()) != '\n' && c != EOF);
 
     if ((t1_1 == 1) || (t1_1 == 2))
       break;
@@ -502,7 +506,7 @@ int ObjectType(char* message) {
       printf("4. Right Angled Triangle\n");
       // printf("Option: ");
       scanf("%d", &t1_2);
-      getchar();  // clear buffer
+      while ((c = getchar()) != '\n' && c != EOF);
 
       if ((t1_2 == 1) || (t1_2 == 2) || (t1_2 == 3) || (t1_2 == 4))
         break;
@@ -525,7 +529,7 @@ int ObjectType(char* message) {
       printf("5. Right Circular Cone\n");
       // printf("Option: ");
       scanf("%d", &t1_2);
-      getchar();  // clear buffer
+      while ((c = getchar()) != '\n' && c != EOF);
 
       if ((t1_2 == 1) || (t1_2 == 2) || (t1_2 == 3) || (t1_2 == 4) ||
           (t1_2 == 5))
