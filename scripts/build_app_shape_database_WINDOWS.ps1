@@ -6,7 +6,7 @@ cd build
 
 Write-Host "Compiling..."
 gcc -I ../include/ -c ../app/app_shape_database.c
-gcc -I ../include/ -c ../src/menu_components.c
+gcc -I ../include/ -c ../src/menu_components_WIN.c
 gcc -I ../include/ -c ../src/linked_list_struct.c
 gcc -I ../include/ -c ../src/graphical.c
 Write-Host "Linking..."
