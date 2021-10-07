@@ -2,9 +2,8 @@
 #include <math.h>
 
 int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,float *c2) {
-  int t1, shape, total_c1, total_c2, type_index, old_unique_count,
-      new_unique_count;
-  float variance, old_mean_c1, old_mean_c2, old_sd_c1, old_sd_c2;
+  int t1, shape, type_index, old_unique_count, new_unique_count;
+  float total_c1, total_c2, old_mean_c1, old_mean_c2;
   if (type == 0 || d1 == 0) {
     perror("Initialising error in Calculation\n");
     return 0;
@@ -61,7 +60,7 @@ int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
           "object entry...\n");
       return 0;
   }
-
+/* //OLD VERSION
   // calculate mean_c1 and sd_c1
   old_mean_c1 = ll->mean_c1[type_index];
   old_sd_c1 = ll->SD_c1[type_index];
@@ -95,6 +94,28 @@ int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
   ll->mean_c2[type_index] = total_c2 / new_unique_count;
   ll->SD_c2[type_index] = sqrt(variance);
   ll->count[type_index] += 1;
+  */
+
+   // calculate mean
+  old_unique_count = ll->count[type_index];
+  new_unique_count = old_unique_count + 1;
+  
+  old_mean_c1 = ll->mean_c1[type_index];
+  total_c1 = old_mean_c1 * old_unique_count;
+  total_c1 += *c1;
+  
+  ll->mean_c1[type_index] = total_c1 / new_unique_count;
+  
+  old_mean_c2 = ll->mean_c2[type_index];
+  total_c2 = old_mean_c2 * old_unique_count;
+  total_c2 += *c2;
+  
+  ll->mean_c2[type_index] = total_c2 / new_unique_count;
+  
+  ll->count[type_index] += 1;
+
+  ll->SD_c1[type_index] += pow(*c1,2);
+  ll->SD_c2[type_index] += pow(*c2,2);
 
   return 1;
 }

@@ -427,13 +427,10 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 
 	}
 	
-	/*
-	float mean_C1 = ll -> mean_c1[shape_array];
-	float SD_C1 = ll -> SD_c1[shape_array];
-	float mean_C2 = ll -> mean_c2[shape_array];
-	float SD_C2 = ll -> SD_c2[shape_array];
-	*/
 
+
+	//ON DEMAND CALCULATIONS
+/*
 
 	// calculate  SD
 	float mean_C1 = 0;
@@ -456,29 +453,35 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 	SD_C1 = sqrt(SD_C1/num_values);
 	SD_C2 = sqrt(SD_C2/num_values);
 
-
-/*
-	printf("\n");
-	printf("%.2f\n",ll -> mean_c1[shape_array]);
-	printf("%.2f\n",ll -> SD_c1[shape_array]);
-	printf("%.2f\n",ll -> mean_c2[shape_array]);
-	printf("%.2f\n",ll -> SD_c2[shape_array]);
-*/
-
 	ll -> mean_c1[shape_array]	= mean_C1;
 	ll -> SD_c1[shape_array]	= SD_C1;
 	ll -> mean_c2[shape_array]	= mean_C2;
 	ll -> SD_c2[shape_array]	= SD_C2;
 
+
+*/
+
+	//LIVE EXTRACTION
+
+	float mean_C1 = ll -> mean_c1[shape_array];
+	float mean_C2 = ll -> mean_c2[shape_array];
+
+	float SD_C1 = ll -> SD_c1[shape_array];
+	float SD_C2 = ll -> SD_c2[shape_array];
+
+	SD_C1 = sqrt(SD_C1/num_values - mean_C1 * mean_C1);
+	SD_C2 = sqrt(SD_C2/num_values - mean_C2 * mean_C2);
+
+
+
 /*
+	//Debugging prints
 	printf("\n\n");
 	printf("%.2f\n",ll -> mean_c1[shape_array]);
 	printf("%.2f\n",ll -> SD_c1[shape_array]);
 	printf("%.2f\n",ll -> mean_c2[shape_array]);
 	printf("%.2f\n",ll -> SD_c2[shape_array]);
 */
-
-
 
 	Graphical(shape, value_D1, value_D2, value_D3, value_C1, value_C2, num_values, SD_C1, SD_C2, mean_C1, mean_C2);
 	//PrintList(ll);

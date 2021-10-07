@@ -12,6 +12,7 @@
         "tuple": "c",
         "type_traits": "c",
         "utility": "c",
-        "menu_components.h": "c"
+        "menu_components.h": "c",
+        "bitset": "c"
     }
 }
