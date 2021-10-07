@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "graphical.h"
 
-#define MAXWIDTH 87 // CHANGE THIS ACCORDING TO SCREEN SIZE or preference. Max 180 (for 1980x1080 res)
+#define MAXWIDTH 80 // CHANGE THIS ACCORDING TO SCREEN SIZE or preference. Max 180 (for 1980x1080 res)
 
 
 //default: "-"; 1: "_", 2: "=", 3: " " 
@@ -110,8 +110,8 @@ void DrawGraph(float *values, int num_values)
 	
 	for (i = 0; i < freq_size; i++)
 	{
-		if (i) printf("                   |");
-		else printf("                    ");
+		if (i) printf("                       |");
+		else printf("                        ");
 
 		for (j = 0; j < frequency[i]; j++)
 		{
@@ -123,7 +123,7 @@ void DrawGraph(float *values, int num_values)
 
 		printf("\n");
 
-		printf("%5d <= x < %5d |", min_val + i * step, min_val + i * step + step);
+		printf("%7d <= x < %7d |", min_val + i * step, min_val + i * step + step);
 		for (j = 0; j < frequency[i]; j++)
 		{
 			for (k = 0; k < spacer_size; k++)
@@ -134,7 +134,7 @@ void DrawGraph(float *values, int num_values)
 
 		if (frequency[i]) printf("|");
 		printf("\n");
-		if (freq_size - i - 1) printf("                   |\n");
+		if (freq_size - i - 1) printf("                       |\n");
 
 	}
 
