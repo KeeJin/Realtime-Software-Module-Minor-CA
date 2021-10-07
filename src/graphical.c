@@ -196,11 +196,11 @@ void DrawTable(char* type_D1, char* type_D2, char* type_D3, char* type_C1, char*
 
 	for (int i = 0; i < num_values; i++)
 	{
-		printf("|%19.4f |", value_D1[i]);
-		if (type_D2[0]) printf("%19.4f |", value_D2[i]);
-		if (type_D3[0]) printf("%19.4f |", value_D3[i]);
-		printf("%19.4f |", value_C1[i]);
-		printf("%19.4f |\n", value_C2[i]);
+		printf("|%19.5f |", value_D1[i]);
+		if (type_D2[0]) printf("%19.5f |", value_D2[i]);
+		if (type_D3[0]) printf("%19.5f |", value_D3[i]);
+		printf("%19.5f |", value_C1[i]);
+		printf("%19.5f |\n", value_C2[i]);
 
 		Divider(type_D2, type_D3, 0);
 	}
@@ -209,16 +209,16 @@ void DrawTable(char* type_D1, char* type_D2, char* type_D3, char* type_C1, char*
 	printf("|        MEAN        |");
 	if (type_D2[0]) printf("        MEAN        |");
 	if (type_D3[0]) printf("        MEAN        |");
-	printf("%19.4f |", mean_C1);
-	printf("%19.4f |\n", mean_C2);
+	printf("%19.5f |", mean_C1);
+	printf("%19.5f |\n", mean_C2);
 
 	//SD
 	Divider(type_D2, type_D3, 0);
 	printf("|         SD         |");
 	if (type_D2[0]) printf("         SD         |");
 	if (type_D3[0]) printf("         SD         |");
-	printf("%19.4f |", SD_C1);
-	printf("%19.4f |\n", SD_C2);
+	printf("%19.5f |", SD_C1);
+	printf("%19.5f |\n", SD_C2);
 
 	//END
 	Divider(type_D2, type_D3, 3);

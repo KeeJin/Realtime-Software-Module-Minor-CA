@@ -70,14 +70,14 @@ void DataEntry(LinkedList* ll) {
     printf("\n\nObject added successfully!\n");
     ShapeChecker(t1, 4);
     ShapeChecker(t1, 5);
-    printf("%.4f\n", d1);
+    printf("%.5f\n", d1);
     if (d2) {
       ShapeChecker(t1, 6);
-      printf("%.4f\n", d2);
+      printf("%.5f\n", d2);
     }
     if (d3) {
       ShapeChecker(t1, 7);
-      printf("%.4f\n", d3);
+      printf("%.5f\n", d3);
     }
   }
   // uncomment this for debugging purposes.
@@ -324,9 +324,9 @@ float ShapeChecker(int type, int dimension) {
   char type_D3[7] = "";
   char object_type[27];
 
-  //Limits for input --> lower_limit < x < upper_limit
-  const int upper_limit = 100;
-  const int lower_limit = 0;
+  //Limits for input --> lower_limit <= x <= upper_limit
+  const float upper_limit = 99.99999;
+  const float lower_limit = 0.1;
 
   switch (type) {
     case 11:  // 2D rectangle
@@ -391,11 +391,10 @@ float ShapeChecker(int type, int dimension) {
     while (1) {
       printf("Object Selected: %s\n", object_type);
       printf("Please enter object's %s (0 < x < 100, in m):\n", type_D1);
-      printf("Input: ");
       scanf("%f", &input_dimension);
       getchar();  // clear buffer
 
-      if ((lower_limit < input_dimension) && (input_dimension < upper_limit))
+      if ((lower_limit <= input_dimension) && (input_dimension <= upper_limit))
         break;
       else {
         system("clear");
@@ -412,11 +411,10 @@ float ShapeChecker(int type, int dimension) {
     while (1) {
       printf("Object Selected: %s\n", object_type);
       printf("Please enter object's %s (0 < x < 100, in m):\n", type_D2);
-      printf("Input: ");
       scanf("%f", &input_dimension);
       getchar();  // clear buffer
 
-      if ((lower_limit < input_dimension) && (input_dimension < upper_limit))
+      if ((lower_limit <= input_dimension) && (input_dimension <= upper_limit))
         break;
       else {
         system("clear");
@@ -433,11 +431,10 @@ float ShapeChecker(int type, int dimension) {
     while (1) {
       printf("Object Selected: %s\n", object_type);
       printf("Please enter object's %s (0 < x < 100, in m):\n", type_D3);
-      printf("Input: ");
       scanf("%f", &input_dimension);
       getchar();  // clear buffer
 
-      if ((lower_limit < input_dimension) && (input_dimension < upper_limit))
+      if ((lower_limit <= input_dimension) && (input_dimension <= upper_limit))
         break;
       else {
         system("clear");
