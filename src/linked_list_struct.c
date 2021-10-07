@@ -69,9 +69,14 @@ int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
   new_unique_count = old_unique_count + 1;
   total_c1 = old_mean_c1 * old_unique_count;
   total_c1 += *c1;
-  variance = (((new_unique_count - 2) * old_sd_c1 +
-               ((*c1 - old_mean_c1) * (*c1 - old_mean_c1))) /
-              (new_unique_count - 1));
+
+  if(old_unique_count == 0) {
+    variance = 0.0;
+  } else {
+    variance = (((new_unique_count - 2) * old_sd_c1 +
+                ((*c1 - old_mean_c1) * (*c1 - old_mean_c1))) /
+                (new_unique_count - 1));
+  }
 
   // update with new values
   ll->mean_c1[type_index] = total_c1 / new_unique_count;
