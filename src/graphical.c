@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "graphical.h"
 
-#define MAXWIDTH 80 // CHANGE THIS ACCORDING TO SCREEN SIZE or preference. Max 180 (for 1980x1080 res)
+#define MAXWIDTH 80 // CHANGE THIS ACCORDING TO SCREEN SIZE or preference.
 
 
 
@@ -87,39 +87,6 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 	}
 	
 
-
-	//ON DEMAND CALCULATIONS
-/*
-
-	// calculate  SD
-	float mean_C1 = 0;
-	float SD_C1 = 0;
-	float mean_C2 = 0;
-	float SD_C2 = 0;
-
-	for(int i = 0; i < num_values; i++)
-	{
-		mean_C1 += value_C1[i]/num_values;
-		mean_C2 += value_C2[i]/num_values;
-	}
-
-	for(int i = 0; i < num_values; i++)
-	{	
-		SD_C1 += pow((value_C1[i] - mean_C1),2);
-		SD_C2 += pow((value_C2[i] - mean_C2),2);
-	}
-
-	SD_C1 = sqrt(SD_C1/num_values);
-	SD_C2 = sqrt(SD_C2/num_values);
-
-	ll -> mean_c1[shape_array]	= mean_C1;
-	ll -> SD_c1[shape_array]	= SD_C1;
-	ll -> mean_c2[shape_array]	= mean_C2;
-	ll -> SD_c2[shape_array]	= SD_C2;
-
-
-*/
-
 	//LIVE EXTRACTION
 
 	float mean_C1 = ll -> mean_c1[shape_array];
@@ -131,19 +98,7 @@ void Display(int shape, LinkedList *ll, LinkedListEx *ex)
 	SD_C1 = sqrt(SD_C1/num_values - mean_C1 * mean_C1);
 	SD_C2 = sqrt(SD_C2/num_values - mean_C2 * mean_C2);
 
-
-
-/*
-	//Debugging prints
-	printf("\n\n");
-	printf("%.2f\n",ll -> mean_c1[shape_array]);
-	printf("%.2f\n",ll -> SD_c1[shape_array]);
-	printf("%.2f\n",ll -> mean_c2[shape_array]);
-	printf("%.2f\n",ll -> SD_c2[shape_array]);
-*/
-
 	Graphical(shape, value_D1, value_D2, value_D3, value_C1, value_C2, num_values, SD_C1, SD_C2, mean_C1, mean_C2);
-	//PrintList(ll);
 }
 
 void Graphical(int type, float* value_D1, float* value_D2, float* value_D3, float* value_C1, float* value_C2, 
@@ -270,7 +225,7 @@ void Graphical(int type, float* value_D1, float* value_D2, float* value_D3, floa
 
 void DrawGraph(float *values, int num_values)
 {
-	int scale = 8;
+	int scale = 8; // Histogram will have a maximum of (scale+2) number of value ranges.
 	int i, j;
 	int max_val = 0;
 	int max_count = 0;
@@ -316,13 +271,6 @@ void DrawGraph(float *values, int num_values)
 		
 		if (frequency[index] > max_count) max_count = frequency[index];
 	}
-
-	/*	
-	// for debugging
-	printf("\n");
-	for (i = 0; i < freq_size; i++) printf("%d\n", frequency[i]);
-	printf("\n");
-	*/
 	
 	
 	//NEW VERSION
@@ -360,46 +308,8 @@ void DrawGraph(float *values, int num_values)
 
 	}
 
-	/* //OLD VERSION
-	int spacer_size = max_width / max_count;
-	if (!spacer_size) spacer_size = 1;
-	char spacer[spacer_size];
-
-	for (i = 0; i < spacer_size; i++)
-	{
-		spacer[i] = '_';
-	}
-	
-	spacer[spacer_size] = '\0';
-
-	for (i = 0; i < freq_size; i++)
-	{
-		if (i) printf("                 |");
-		else printf("                  ");
-
-		for (j = 0; j < frequency[i]; j++)
-		{
-			printf("%s", spacer);
-		}
-
-		printf("\n");
-
-		printf("%4d <= x < %4d |", min_val + i * step, min_val + i * step + step);
-		for (j = 0; j < frequency[i]; j++)
-		{
-			printf("%s", spacer);
-		}
-
-		if (frequency[i]) printf("|");
-		printf("\n");
-		if (freq_size - i - 1) printf("                 |\n");
-
-	}
-	*/
-
 }
 
-//default: "-"; 1: "_", 2: "=", 3: " " 
 void Divider(char* type_D2, char* type_D3, int type)
 {
 	switch (type)

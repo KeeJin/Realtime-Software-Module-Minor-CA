@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <string.h>
-// #define QNX
+
 
 void PrintMenuHeader() {
   printf("===============================\n");
@@ -12,7 +12,6 @@ void PrintMenuHeader() {
   printf("===============================\n");
 }
 void PrintMenuOptions() {
-  PrintMenuHeader();
   printf("\n-------------------------------\n");
   printf("MENU OPTIONS\n");
   printf("-------------------------------\n");
@@ -27,20 +26,12 @@ void PrintMenuOptions() {
 void GetUserMenuOption(char* user_input_ptr) {
   int temp;
   int c;
-  system("clear"); // comment this line for easy reading of error
-  /*
-  PrintMenuOptions();
-  printf("Hello user, what would you like to do today? (1/2/3/4/5)\nOption: ");
-  scanf("%c", user_input_ptr);
-  while (getchar() != '\n')
-    ;  // clear buffer
-  */
-  // below code to only allow 1 character input.
-  printf("\n\n");  // to allow space for error printing.
+  system("clear"); // For windows, use sys("cls") instead.
+  printf("\n\n");
   while (1) {
+    PrintMenuHeader();
     PrintMenuOptions();
     printf("Hello user, what would you like to do today? (1/2/3/4/5)\n");
-    // printf("Option: ");
     scanf("%d", &temp);
     while ((c = getchar()) != '\n' && c != EOF);
 
@@ -83,35 +74,10 @@ void DataEntry(LinkedList* ll) {
       printf("%.5f\n", d3);
     }
   }
-  // uncomment this for debugging purposes.
-  // printf("Current database contains the following: \n");
-  // PrintList(ll);
-
-  /* debgugging
-        LinkedListEx extracted_list;
-        extracted_list.head=NULL;
-        extracted_list.tail=NULL;
-        extracted_list.size=0;
-  Extract(ll, &extracted_list, 11, 1);
-  PrintListEx(&extracted_list);
-  PrintList(ll);
-  */
-
-  /*
-#ifdef QNX
-  delay(1000);
-#else
-  sleep(1);
-#endif
-  printf("==========================================\n\n\n\n");*/
   printf("\n\n");
 }
 
 void DataQuery(LinkedList* ll) {
-  // can comment this out later on if we dont want!!
-  // printf("Current database contains the following: \n");
-  // PrintList(ll);
-
   LinkedListEx extracted_list;
   extracted_list.head = NULL;
   extracted_list.tail = NULL;
@@ -137,16 +103,14 @@ void DataQuery(LinkedList* ll) {
 
 void SaveRequest(LinkedList* ll) {
   char filename[20];
-  size_t len = 0;
-  ssize_t line_size = 0;
   printf(
       "Enter your desired filename for this database (Hit enter to abort): ");
-  // line_size = getline(&filename, &len, stdin);
   if (fgets(filename, 20, stdin) == NULL) {
     printf("Invalid filename entered. Aborting save...\n");
   } else {
-    printf("This is what is being saved: \n");
-    PrintList(ll);
+    
+    //printf("This is what is being saved: \n"); //Uncomment this 2 lines to see what is saved.
+    //PrintList(ll);
     SaveCurrentDB(ll, filename);
   }
 }
@@ -177,8 +141,7 @@ void SaveCurrentDB(LinkedList* ll, char filepath[]) {
       printf("Error saving ListNode to file. \n");
       break;
     }
-    printf("cached_node: \nd1 - %.3f, d2 - %.3f, d3 - %.3f", cached_node->d1,
-           cached_node->d2, cached_node->d3);
+    //printf("cached_node: \nd1 - %.3f, d2 - %.3f, d3 - %.3f", cached_node->d1, cached_node->d2, cached_node->d3);
     cached_node = cached_node->next;
   }
   printf("Database stored in the file successfully!\n");
@@ -187,31 +150,34 @@ void SaveCurrentDB(LinkedList* ll, char filepath[]) {
 
 void LoadRequest(LinkedList* ll) {
   char filename[20];
-  size_t len = 0;
-  ssize_t line_size = 0;
   char confirmation;
-  printf(
-      "Warning!! This will wipe out your current database. Do you wish to "
-      "proceed? (Y/N)\n");
-  scanf("%c", &confirmation);
-  while (getchar() != '\n')
-    ;  // clear buffer
-  if (confirmation != 'y' && confirmation != 'Y') return;
+  if(ll->size != 0) 
+  {
+    printf("Warning!! This will wipe out your current database. Do you wish to proceed? (Y/N)\n");
+    scanf("%c", &confirmation);
+    while (getchar() != '\n');  // clear buffer
+    if (confirmation != 'y' && confirmation != 'Y'){
+      printf("Aborting...\n\n\n");
+      return;
+    }
+  } 
 
   printf(
       "Enter the filename of the database you wish to load (Hit enter to "
       "abort): ");
-  // line_size = getline(&filename, &len, stdin);
   if (fgets(filename, 20, stdin) == NULL) {
     printf("Invalid filename entered. Aborting save...\n");
   } else {
+    printf("\n");
     FreeMem(ll);
+    printf("\n");
     LoadDB(ll, filename);
+    printf("\n\n");
   }
-  // can comment this out later on if we dont want!!
-  printf("Current database contains the following: \n");
-  PrintList(ll);
-  printf("==========================================\n\n\n\n");
+  
+  //printf("Current database contains the following: \n"); //Uncomment to see what is loaded.
+  //PrintList(ll);
+  //printf("==========================================\n\n\n\n");
 }
 
 // function to load linked list from a file
@@ -251,8 +217,7 @@ void LoadDB(LinkedList* ll, char filepath[]) {
       tail->next = (ListNode*)malloc(sizeof(ListNode));
       tail = tail->next;
     }
-    printf("cached_node: \nd1 - %.3f, d2 - %.3f, d3 - %.3f\n", cached_node->d1,
-           cached_node->d2, cached_node->d3);
+    //printf("cached_node: \nd1 - %.3f, d2 - %.3f, d3 - %.3f\n", cached_node->d1,cached_node->d2, cached_node->d3);
     tail->type = cached_node->type;
     tail->d1 = cached_node->d1;
     tail->d2 = cached_node->d2;
@@ -266,11 +231,12 @@ void LoadDB(LinkedList* ll, char filepath[]) {
   ll->head = head;
   ll->tail = tail;
   // PrintList(ll);
+
+  printf("Database loaded successfully.\n");
 }
 
 int MainMenu(LinkedList* ll, const char* file_path) {
   int c;
-  PrintMenuHeader();
   while (1) {
     char user_option;
     GetUserMenuOption(&user_option);
@@ -287,7 +253,8 @@ int MainMenu(LinkedList* ll, const char* file_path) {
         while ((c = getchar()) != '\n' && c != EOF);
         break;
       case '3':
-        SaveRequest(ll);
+        if (ll->size == 0) printf("Current database is empty, nothing to save.\n\n");
+        else SaveRequest(ll);
         printf("Press 'Enter' to continue...\n");
         while ((c = getchar()) != '\n' && c != EOF);
         break;
