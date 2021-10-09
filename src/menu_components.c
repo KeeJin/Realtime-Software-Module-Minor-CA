@@ -5,6 +5,11 @@
 #include <unistd.h>
 #include <string.h>
 
+#ifdef ENV_WINDOWS
+#define CLEARSCREEN() system("cls") // windows
+#else
+#define CLEARSCREEN() system("clear") // ubuntu
+#endif
 
 void PrintMenuHeader() {
   printf("===============================\n");
@@ -26,7 +31,7 @@ void PrintMenuOptions() {
 void GetUserMenuOption(char* user_input_ptr) {
   int temp;
   int c;
-  system("clear"); // For windows, use sys("cls") instead.
+  CLEARSCREEN();
   printf("\n\n");
   while (1) {
     PrintMenuHeader();
@@ -38,7 +43,7 @@ void GetUserMenuOption(char* user_input_ptr) {
     if ((temp == 1) || (temp == 2) || (temp == 3) || (temp == 4) || (temp == 5))
       break;
     else {
-      system("clear");
+      CLEARSCREEN();
       printf("Invalid input! Please choose only 1, 2, 3, 4 or 5!\n\n");
     }
   }
@@ -358,7 +363,7 @@ float ShapeChecker(int type, int dimension) {
   }
 
   if ((dimension == 1) && type_D1[0]) {
-    system("clear");
+    CLEARSCREEN();
     printf("\n\n");
     while (1) {
       printf("Object Selected: %s\n", object_type);
@@ -369,16 +374,16 @@ float ShapeChecker(int type, int dimension) {
       if ((lower_limit <= input_dimension) && (input_dimension <= upper_limit))
         break;
       else {
-        system("clear");
+        CLEARSCREEN();
         printf("Invalid input! Please enter a float value between 0 and 100!\n\n");
       }
     }
-    system("clear");
+    CLEARSCREEN();
     return input_dimension;
   }
 
   if ((dimension == 2) && type_D2[0]) {
-    system("clear");
+    CLEARSCREEN();
     printf("\n\n");
     while (1) {
       printf("Object Selected: %s\n", object_type);
@@ -389,16 +394,16 @@ float ShapeChecker(int type, int dimension) {
       if ((lower_limit <= input_dimension) && (input_dimension <= upper_limit))
         break;
       else {
-        system("clear");
+        CLEARSCREEN();
         printf("Invalid input! Please enter a float value between 0 and 100!\n\n");
       }
     }
-    system("clear");
+    CLEARSCREEN();
     return input_dimension;
   }
 
   if ((dimension == 3) && type_D3[0]) {
-    system("clear");
+    CLEARSCREEN();
     printf("\n\n");
     while (1) {
       printf("Object Selected: %s\n", object_type);
@@ -409,11 +414,11 @@ float ShapeChecker(int type, int dimension) {
       if ((lower_limit <= input_dimension) && (input_dimension <= upper_limit))
         break;
       else {
-        system("clear");
+        CLEARSCREEN();
         printf("Invalid input! Please enter a float value between 0 and 100!\n\n");
       }
     }
-    system("clear");
+    CLEARSCREEN();
     return input_dimension;
   }
 
@@ -435,7 +440,7 @@ float ShapeChecker(int type, int dimension) {
 }
 
 int ObjectType(char* message) {
-  system("clear");
+  CLEARSCREEN();
 
   printf("\n\n");  // to allow space for error printing.
 
@@ -456,12 +461,12 @@ int ObjectType(char* message) {
     if ((t1_1 == 1) || (t1_1 == 2))
       break;
     else {
-      system("clear");
+      CLEARSCREEN();
       printf("Invalid input! Please choose only 1 or 2!\n\n");
     }
   }
 
-  system("clear");
+  CLEARSCREEN();
   printf("\n\n");  // to allow space for error printing.
 
   if (t1_1 == 1)  // 2D
@@ -480,7 +485,7 @@ int ObjectType(char* message) {
       if ((t1_2 == 1) || (t1_2 == 2) || (t1_2 == 3) || (t1_2 == 4))
         break;
       else {
-        system("clear");
+        CLEARSCREEN();
         printf("Invalid input! Please choose only 1, 2, 3 or 4!\n\n");
       }
     }
@@ -504,13 +509,13 @@ int ObjectType(char* message) {
           (t1_2 == 5))
         break;
       else {
-        system("clear");
+        CLEARSCREEN();
         printf("Invalid input! Please choose only 1, 2, 3, 4 or 5!\n\n");
       }
     }
   }
 
-  system("clear");
+  CLEARSCREEN();
 
   t1 = t1_1 + t1_2 * 10;
   return t1;
