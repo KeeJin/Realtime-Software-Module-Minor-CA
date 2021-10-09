@@ -21,7 +21,7 @@ cd Realtime-Software-Module-Project/scripts
 sudo chmod +x build_app_shape_database.sh
 ```
 
-## Tested on Windows 10, gcc 7.5.0:
+## Tested on Windows 10, gcc 8.1.0:
 ### Pre-requisites
 - Powershell (to run automated script)
 
