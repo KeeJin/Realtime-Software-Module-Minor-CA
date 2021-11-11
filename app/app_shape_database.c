@@ -4,6 +4,8 @@ int main(int argc, char* argv[]) {
   char* file_path;
   file_path = (char*)"test";
   LinkedList main_list;
+
+  //Initialize initial varaibles for linkedlist
   main_list.head = NULL;
   main_list.tail = 0;
   main_list.size = 0;

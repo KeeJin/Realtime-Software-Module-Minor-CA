@@ -60,41 +60,6 @@ int Calculate(LinkedList *ll, int type, float d1, float d2, float d3, float *c1,
           "object entry...\n");
       return 0;
   }
-/* //OLD VERSION
-  // calculate mean_c1 and sd_c1
-  old_mean_c1 = ll->mean_c1[type_index];
-  old_sd_c1 = ll->SD_c1[type_index];
-  old_unique_count = ll->count[type_index];
-  new_unique_count = old_unique_count + 1;
-  total_c1 = old_mean_c1 * old_unique_count;
-  total_c1 += *c1;
-
-  if(old_unique_count == 0) {
-    variance = 0.0;
-  } else {
-    variance = (((new_unique_count - 2) * old_sd_c1 +
-                ((*c1 - old_mean_c1) * (*c1 - old_mean_c1))) /
-                (new_unique_count - 1));
-  }
-
-  // update with new values
-  ll->mean_c1[type_index] = total_c1 / new_unique_count;
-  ll->SD_c1[type_index] = sqrt(variance);
-
-  // calculate mean_c2 and sd_c2
-  old_mean_c2 = ll->mean_c2[type_index];
-  old_sd_c2 = ll->SD_c2[type_index];
-  total_c2 = old_mean_c2 * old_unique_count;
-  total_c2 += *c2;
-  variance = (((new_unique_count - 2) * old_sd_c2 +
-               ((*c1 - old_mean_c2) * (*c1 - old_mean_c2))) /
-              (new_unique_count - 1));
-
-  // update with new values
-  ll->mean_c2[type_index] = total_c2 / new_unique_count;
-  ll->SD_c2[type_index] = sqrt(variance);
-  ll->count[type_index] += 1;
-  */
 
    // calculate mean
   old_unique_count = ll->count[type_index];
